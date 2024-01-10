@@ -1,0 +1,19 @@
+Te doen:
+
+Bezig:
+
+Klaar:
+
+--//Functies//--
+Plattegrond (3d interactief)
+ -Temperatuur 
+ -belichting/lampen regelen
+ -luchtvochtigheid
+ -stroom verbruik
+ -brand alarm
+ -beveilingscamera's
+
+dashboard
+-instellingen
+-Plattegrond
+-maintenance

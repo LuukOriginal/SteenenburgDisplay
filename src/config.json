@@ -1,0 +1,7 @@
+{
+    "OauthApp": {
+        "ClientId": "5088049154658469978",
+        "Scopes": "openid", 
+        "RedirectUrl": "http://localhost:3000/login"
+    }
+}

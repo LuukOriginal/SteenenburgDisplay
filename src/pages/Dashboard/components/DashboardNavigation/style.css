@@ -1,0 +1,25 @@
+#dashboard-navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+    background-color: chartreuse;
+}
+
+#dashboard-navigation-items {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 45%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: red;
+}
+
+#dashboard-navigation-item {
+    height: 75px;
+    width: 75px;
+    color:white;
+    background-color: blue;
+}

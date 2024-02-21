@@ -7,12 +7,14 @@ import {
   Stage,
 } from "@react-three/drei";
 
+// import {Hotel} from "./Hotel";
+
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import "./style.css";
 
-function HouseModel() {
-  const gltf = useLoader(GLTFLoader, "HouseModel.glb");
+function Hotel() {
+  const gltf = useLoader(GLTFLoader, "hotelor.gltf");
   return <primitive object={gltf.scene} />;
 }
 
@@ -31,11 +33,11 @@ export default class Map extends Component {
                 rotation={[Math.PI / 8, Math.PI / 4, 0]}
               >
                 <Stage environment="city" intensity={0.6} castShadow={false}>
-                  <HouseModel />
+                  <Hotel/>
                 </Stage>
                 <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-3}>
                   <planeGeometry args={[170, 170]} />
-                  <MeshReflectorMaterial
+                  {/* <MeshReflectorMaterial
                     blur={[300, 100]}
                     resolution={2048}
                     mixBlur={1}
@@ -46,7 +48,7 @@ export default class Map extends Component {
                     maxDepthThreshold={1.4}
                     color="#101010"
                     metalness={0.5}
-                  />
+                  /> */}
                 </mesh>
               </PresentationControls>
             </>

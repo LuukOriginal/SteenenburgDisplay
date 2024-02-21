@@ -22,31 +22,60 @@ export default class DashboardNavigation extends Component {
   }
   render() {
     return (
-      <div id="dashboard-nav">
-        <div id="dashboard-nav-items">
-          {navigationData.map((item, index) => {
-            return (
-              <div
-                key={index}
-                className={`dashboard-nav-item text-primary ${
-                  item.path === this.state.currentPath ? "side-nav-active" : ""
-                }`}
-              >
-                <Link
-                  className="dashboard-nav-link"
-                  to={item.path}
-                  onClick={() => {
-                    this.setState({ currentPath: item.path });
-                  }}
+      <div id="dashboard-nav-container">
+        <div className="trapezoid" id="dashboard-nav">
+          <div id="dashboard-nav-items">
+            {navigationData.map((item, index) => {
+              return (
+                <div
+                  key={index}
+                  className={`dashboard-nav-item text-primary ${
+                    item.path === this.state.currentPath ? "side-nav-active" : ""
+                  }`}
                 >
-                  {item.icon}
-                  <span className="dashboard-nav-title">{item.title}</span>
-                </Link>
-              </div>
-            );
-          })}
+                  <Link
+                    className="dashboard-nav-link"
+                    to={item.path}
+                    onClick={() => {
+                      this.setState({ currentPath: item.path });
+                    }}
+                  >
+                    {item.icon}
+                    <span className="dashboard-nav-title">{item.title}</span>
+                    <div className="underline"/>
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
+        <div className="line"/>
       </div>
+      // <div id="dashboard-nav">
+      //   <div id="dashboard-nav-items">
+      //     {navigationData.map((item, index) => {
+      //       return (
+      //         <div
+      //           key={index}
+      //           className={`dashboard-nav-item text-primary ${
+      //             item.path === this.state.currentPath ? "side-nav-active" : ""
+      //           }`}
+      //         >
+      //           <Link
+      //             className="dashboard-nav-link"
+      //             to={item.path}
+      //             onClick={() => {
+      //               this.setState({ currentPath: item.path });
+      //             }}
+      //           >
+      //             {item.icon}
+      //             <span className="dashboard-nav-title">{item.title}</span>
+      //           </Link>
+      //         </div>
+      //       );
+      //     })}
+      //   </div>
+      // </div>
     );
   }
 }

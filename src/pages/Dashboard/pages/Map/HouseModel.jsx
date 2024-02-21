@@ -8,7 +8,7 @@ import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF("/HouseModel-transformed.glb");
+  const { nodes, materials } = useGLTF("/HouseModel.glb");
   return (
     <group {...props} dispose={null}>
       <group scale={12.308}>

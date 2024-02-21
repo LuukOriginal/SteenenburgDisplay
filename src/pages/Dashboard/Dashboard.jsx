@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import DashboardNavigation from './components/DashboardNavigation/DashboardNavigation'
 
 import "./style.css"
+import Map from './pages/Map/Map'
 
 export default class Dashboard extends Component {
   render() {
@@ -10,7 +11,7 @@ export default class Dashboard extends Component {
       <div id="Dashboard">
         <div id="content">
           <Routes>
-            <Route path="/" element={<div>plattegrond</div>}/>
+            {/* <Route path="/" element={<Map />}/> */}
             <Route path="onderhoud" element={<div>onderhoud</div>}/>
           </Routes>
         </div>

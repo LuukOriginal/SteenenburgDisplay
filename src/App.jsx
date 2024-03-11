@@ -6,6 +6,23 @@ import NotFound from './pages/Home/NotFound'
 import React, { Component } from 'react'
 
 export default class App extends Component {
+  componentDidMount() {
+    const theme = localStorage.getItem('theme') || 'dark';
+
+    switch (theme) {
+      case "light":
+          document.documentElement.className = "theme-light";
+          break;
+      case "dark":
+          document.documentElement.className = "theme-dark";
+          break;
+      case "automatic":
+          
+          break;
+      default:
+          break;
+  }
+  }
   render() {
     return (
       <div id="App">

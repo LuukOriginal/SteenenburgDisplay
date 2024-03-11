@@ -7,13 +7,13 @@
 }
 
 .theme-light {
-    --text-normal: #2e3338;
+    --text-normal: #414244;
     --text-muted: #747f8d;
     --text-label: #535353;
     --background-primary: #fff;
-    --background-secondary: #182039;
+    --background-secondary: rgb(246, 246, 246);
     --background-secondary-alt: #ebedef;
-    --background-tertiary: #e3e5e8;
+    --background-tertiary: rgb(245, 245, 245);
     --background-modifier-hover: rgba(116,127,141,0.08);
     --background-modifier-active: rgba(116,127,141,0.16);
 }

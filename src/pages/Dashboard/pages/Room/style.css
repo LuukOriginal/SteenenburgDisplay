@@ -26,8 +26,29 @@
 }
 
 .room-card {
-    width: 100%;
-    height: calc(50% - 10px);
+    width: 50%;
+    height: calc(40% - 10px);
     background-color: var(--background-secondary);
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+#testprogress {
+    width: 50%;
+    height: 50%;
+}
+
+.RCP {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.progress-text {
+    position: absolute;
+    font-size: 2vw;
+    font-weight: 100;
+    user-select: none;
 }

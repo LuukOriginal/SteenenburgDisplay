@@ -12,22 +12,25 @@ if (localStorage.getItem("theme") === null) {
   localStorage.setItem("theme", "dark");
 }
 
+function GetAutoTheme() {
+  const currentTime = new Date().getHours();
+  if (currentTime >= 6 && currentTime <= 18) {
+    return "light";
+  } else {
+    return "dark";
+  }
+}
+
 export default function ThemeManager({ children }) {
   const [mode, setMode] = React.useState(
     localStorage.getItem("theme") === "auto"
-      ? "dark"
+      ? GetAutoTheme()
       : localStorage.getItem("theme") || "dark"
   );
 
   function StartAutoInterval() {
     return setInterval(() => {
-      console.log("Looping!");
-      const currentTime = new Date().getHours();
-      if (currentTime >= 6 && currentTime <= 18) {
-        setMode("light");
-      } else {
-        setMode("dark");
-      }
+      setMode(GetAutoTheme());
     }, 1000);
   }
 

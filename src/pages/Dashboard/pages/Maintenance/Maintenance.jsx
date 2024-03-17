@@ -9,11 +9,50 @@ import Container from "@mui/material/Container";
 import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+import List from "@mui/material/List";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import ListSubheader from "@mui/material/ListSubheader";
+import ListItemButton from "@mui/material/ListItemButton";
+import Button from "@mui/material/Button";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+
+const messages = [
+  {
+    id: 1,
+    primary: "Error",
+    secondary:
+      "I'll be in the neighbourhood this week. Let's grab a bite to eat",
+    person: "/static/images/avatar/5.jpg",
+  },
+  {
+    id: 2,
+    primary: "Birthday Gift",
+    secondary: `Do you have a suggestion for a good present for John on his work
+      anniversary. I am really confused & would love your thoughts on it.`,
+    person: "/static/images/avatar/1.jpg",
+  },
+  {
+    id: 3,
+    primary: "Recipe to try",
+    secondary:
+      "I am try out this new BBQ recipe, I think this might be amazing",
+    person: "/static/images/avatar/2.jpg",
+  },
+  {
+    id: 4,
+    primary: "Yes!",
+    secondary: "I have the tickets to the ReactConf for this year.",
+    person: "/static/images/avatar/3.jpg",
+  },
+];
 
 export default function Maintenance() {
   return (
     <div id="Maintenance">
-      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }} style={{ height: "1vh" }}>
+      <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={4} lg={4}>
             <Stack spacing={3} display="flex">
@@ -24,10 +63,10 @@ export default function Maintenance() {
                   flexDirection: "column",
                   flexGrow: 1,
                   // height: 337.5,
-                  height: "calc(50vh - 75px - 12px)",
+                  height: "calc(47.5vh - 75px - 12px)",
                 }}
               >
-                <Box display={"flex"}>
+                <Box display={"flex"} alignItems={"center"}>
                   <ErrorOutlineIcon />
                   <Typography variant="h6" ml={1}>
                     Log
@@ -38,25 +77,17 @@ export default function Maintenance() {
                 sx={{
                   p: 2,
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: "column",
                   // height: 337.5,
-                  height: "calc(50vh - 75px - 12px)",
+                  height: "calc(47.5vh - 75px - 12px)",
                 }}
               >
-                <Box display={"flex"}>
+                <Box display={"flex"} alignItems={"center"}>
                   <QueryStatsIcon />
                   <Typography ml={1} variant="h6">
                     Prestaties
                   </Typography>
                 </Box>
-                <Grid item xs={6} md={12} lg={6}>
-                  <Grid item xs={6} md={6} lg={6}>
-                    <Paper va>Baguette1</Paper>
-                  </Grid>
-                  <Grid item xs={6} md={6} lg={6}>
-                    <Paper>Baguette2</Paper>
-                  </Grid>
-                </Grid>
               </Paper>
             </Stack>
           </Grid>
@@ -72,16 +103,38 @@ export default function Maintenance() {
                 p: 2,
                 display: "flex",
                 flexDirection: "column",
-                height: "calc(100vh - 150px)",
+                height: "calc(95vh - 150px)",
                 // height: 700,
               }}
             >
-              <Box display={"flex"}>
+              <Box display={"flex"} alignItems={"center"}>
                 <NotificationsNoneIcon />
                 <Typography variant="h6" ml={1}>
                   Meldingen
                 </Typography>
               </Box>
+              <List sx={{ mb: 2 }}>
+                {messages.map(({ id, primary, secondary, person }) => (
+                  <React.Fragment key={id}>
+                    {id === 1 && (
+                      <ListSubheader sx={{ bgcolor: "background.paper" }}>
+                        Today
+                      </ListSubheader>
+                    )}
+                    {id === 3 && (
+                      <ListSubheader sx={{ bgcolor: "background.paper" }}>
+                        Yesterday
+                      </ListSubheader>
+                    )}
+                    <ListItemButton>
+                      <ListItemAvatar>
+                        <Avatar alt="Profile Picture" src={person} />
+                      </ListItemAvatar>
+                      <ListItemText primary={primary} secondary={secondary} />
+                    </ListItemButton>
+                  </React.Fragment>
+                ))}
+              </List>
             </Paper>
           </Grid>
 
@@ -93,16 +146,33 @@ export default function Maintenance() {
                 flexDirection: "column",
                 // height: 500,
                 // height: "calc(50vh - 75px)",
-                height: "calc(50vh - 75px - 12px)",
+                height: "calc(47.5vh - 75px - 12px)",
                 // minHeight: "100px",
+                alignItems: "center",
               }}
             >
-              <Box display={"flex"}>
-                <RestartAltIcon />
+              <Box display={"flex"} alignItems={"center"}>
+                <EngineeringIcon />
                 <Typography variant="h6" ml={1}>
-                  Herstarten en afsluiten
+                  Systeem onderhoud
                 </Typography>
               </Box>
+              <Stack spacing={1} p={2}>
+                <Button
+                  variant="outlined"
+                  color="warning"
+                  startIcon={<RestartAltIcon />}
+                >
+                  Herstarten
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  startIcon={<PowerSettingsNewIcon />}
+                >
+                  Afsluiten
+                </Button>
+              </Stack>
             </Paper>
           </Grid>
         </Grid>

@@ -14,7 +14,7 @@ if (localStorage.getItem("theme") === null) {
 
 function GetAutoTheme() {
   const currentTime = new Date().getHours();
-  if (currentTime >= 6 && currentTime <= 18) {
+  if (currentTime >= 6 && currentTime < 18) {
     return "light";
   } else {
     return "dark";

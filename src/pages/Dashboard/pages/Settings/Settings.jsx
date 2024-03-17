@@ -8,15 +8,22 @@ import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
 
 import { ColorModeContext } from "../../../../components/ThemeManager/ThemeManager";
+import { ScreenSaverContext } from "../../../../components/ScreenSaver/ScreenSaverManager";
 
 export default function Settings() {
   const colorMode = React.useContext(ColorModeContext);
+  const screenSaveManager = React.useContext(ScreenSaverContext);
 
   const isAuto = colorMode.getIsAuto();
   const [alignment, setAlignment] = React.useState(
     isAuto ? "auto" : colorMode.get()
+  );
+
+  const [isScreenSaverEnabled, setIsScreenSaverEnabled] = React.useState(
+    screenSaveManager.getEnabled()
   );
 
   const handleChange = (event, newAlignment) => {
@@ -47,14 +54,31 @@ export default function Settings() {
                 <ToggleButton value="auto">Auto</ToggleButton>
               </ToggleButtonGroup>
 
-              <Typography variant="h6">Other</Typography>
+              <Typography variant="h6">Screensaver</Typography>
               <FormControlLabel
-                control={<Switch defaultChecked />}
+                control={
+                  <Switch
+                    defaultChecked
+                    checked={isScreenSaverEnabled}
+                    onChange={(e) => {
+                      setIsScreenSaverEnabled(e.target.checked);
+                      screenSaveManager.setEnabled(e.target.checked);
+                    }}
+                  />
+                }
                 label="Label"
               />
               <FormControlLabel
-                control={<Switch defaultChecked />}
-                label="Label"
+                control={
+                  <TextField
+                    type="number"
+                    InputProps={{ inputProps: { min: 0, pattern: "[0-9]*" } }}
+                    variant="standard"
+                    onChange={(e) => {}}
+                    disabled={isScreenSaverEnabled} //todo, add  checking on input, and set the actual value in the manager
+                  />
+                }
+                label="Idle time (seconds)"
               />
             </FormGroup>
           </Container>

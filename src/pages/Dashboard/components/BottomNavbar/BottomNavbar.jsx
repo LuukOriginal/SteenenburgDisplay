@@ -26,10 +26,11 @@ export default function BottomNavbar() {
               setValue(newValue);
             }}
           >
-            {navigationData.map((item) => (
+            {navigationData.map((item, index) => (
               <BottomNavigationAction
                 label={item.title}
                 icon={item.icon}
+                key={index}
                 onClick={() => navigate(item.path)}
               />
             ))}

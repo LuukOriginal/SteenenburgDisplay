@@ -22,11 +22,15 @@ if (localStorage.getItem("screenSaverIdleTime") === null) {
 
 export default function ScreenSaverManager({ children }) {
   const [screenSaverEnabled, setScreenSaverEnabled] = React.useState(
-    localStorage.getItem("screenSaverEnabled")
+    localStorage.getItem("screenSaverEnabled") === "true"
+  );
+
+  const screenIdleInteger = parseInt(
+    localStorage.getItem("screenSaverIdleTime")
   );
 
   const [screenSaverIdleTime, setScreenSaverIdleTime] = React.useState(
-    localStorage.getItem("screenSaverIdleTime")
+    isNaN(screenIdleInteger) ? 1 : screenIdleInteger
   );
 
   const [screenSaverOpen, setScreenSaverOpen] = React.useState(false);
@@ -49,6 +53,7 @@ export default function ScreenSaverManager({ children }) {
     const idleInterval = setInterval(() => {
       idleCounter += 1;
       if (idleCounter >= screenSaverIdleTime * 60 && screenSaverEnabled) {
+        console.log(idleCounter + "/" + screenSaverIdleTime);
         setScreenSaverOpen(true);
       } else {
         setScreenSaverOpen(false);
@@ -61,7 +66,6 @@ export default function ScreenSaverManager({ children }) {
   const ScreenSaverSetter = {
     setEnabled: (enabled) => {
       setScreenSaverEnabled(enabled);
-
       localStorage.setItem("screenSaverEnabled", enabled);
     },
     getEnabled: () => {
@@ -74,7 +78,7 @@ export default function ScreenSaverManager({ children }) {
       localStorage.setItem("screenSaverIdleTime", minutes);
     },
     getIdleTime: () => {
-      return screenSaverEnabled;
+      return screenSaverIdleTime;
     },
 
     setOpen: (open) => {

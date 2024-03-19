@@ -26,6 +26,10 @@ export default function Settings() {
     screenSaveManager.getEnabled()
   );
 
+  const [screenSaverInterval, setScreenSaverInterval] = React.useState(
+    screenSaveManager.getIdleTime()
+  );
+
   const handleChange = (event, newAlignment) => {
     if (newAlignment !== null) {
       setAlignment(newAlignment);
@@ -58,7 +62,6 @@ export default function Settings() {
               <FormControlLabel
                 control={
                   <Switch
-                    defaultChecked
                     checked={isScreenSaverEnabled}
                     onChange={(e) => {
                       setIsScreenSaverEnabled(e.target.checked);
@@ -72,13 +75,39 @@ export default function Settings() {
                 control={
                   <TextField
                     type="number"
-                    InputProps={{ inputProps: { min: 0, pattern: "[0-9]*" } }}
                     variant="standard"
-                    onChange={(e) => {}}
-                    disabled={isScreenSaverEnabled} //todo, add  checking on input, and set the actual value in the manager
+                    value={screenSaverInterval}
+                    onBlur={(e) => {
+                      const value = parseInt(
+                        screenSaverInterval.replaceAll(" ", "")
+                      );
+                      if (isNaN(value) || screenSaverInterval < 1)
+                        setScreenSaverInterval(1);
+
+                      console.log("Setting screensaver to " + value);
+
+                      screenSaveManager.setIdleTime(value);
+                    }}
+                    onChange={(e) => {
+                      // let value = parseInt(e.target.value);
+                      // if (isNaN(value) && e.target.value.trim() !== "") return;
+                      const pattern = /^(|\d+)$/;
+                      const valid = e.target.value
+                        .replaceAll(" ", "") //todo prevent e, E, -, + etc
+                        .match(pattern);
+                      if (!valid) {
+                        e.preventDefault();
+                        return;
+                      }
+
+                      console.log(e.target.value);
+
+                      setScreenSaverInterval(e.target.value);
+                    }}
+                    disabled={!isScreenSaverEnabled} //TODO, add  checking on input, and set the actual value in the manager
                   />
                 }
-                label="Idle time (seconds)"
+                label="Idle time (Minutes)"
               />
             </FormGroup>
           </Container>

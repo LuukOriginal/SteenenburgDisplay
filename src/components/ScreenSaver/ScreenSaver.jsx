@@ -70,7 +70,7 @@ export default function ScreenSaver() {
         />
       </div>
       <div id="screensaver-info-container">
-        <LogoTopBar />
+        <LogoTopBar theme="dark" />
         <div id="screensaver-info-bottom">
           <Stack spacing={0} mr="4vw" mb="6vh" ml="auto">
             <Typography
@@ -78,13 +78,19 @@ export default function ScreenSaver() {
               fontWeight={400}
               //   align="right"
               style={{ opacity: 0.7 }}
+              color="#fff"
             >
               {currentDate.toLocaleTimeString(["nl-nl"], {
                 hour: "2-digit",
                 minute: "2-digit",
               })}
             </Typography>
-            <Typography variant="h4" align="right" style={{ opacity: 0.7 }}>
+            <Typography
+              variant="h4"
+              align="right"
+              style={{ opacity: 0.7 }}
+              color="#fff"
+            >
               {currentDate.toLocaleDateString()}
             </Typography>
           </Stack>

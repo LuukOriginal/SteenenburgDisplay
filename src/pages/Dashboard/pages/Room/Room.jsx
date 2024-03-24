@@ -61,9 +61,38 @@ export default function Room() {
             </Paper>
           </Grid>
 
-          <Grid item xs={12}>
+          <Grid item xs={12} md={8} lg={9}>
             <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
-              Hoi3
+              CO2 gehalte
+              <Slider
+                defaultValue={50}
+                aria-label="Default"
+                valueLabelDisplay="auto"
+                orientation="vertical"
+                style={{ height: "200px" }}
+              />
+              als de gehalte 100 is dan zit iemand te paffen
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={8} lg={9}>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+              <Slider
+                defaultValue={50}
+                value={temperature}
+                onChange={(e) => setTemperature(e.target.value)}
+                aria-label="Default"
+                valueLabelDisplay="auto"
+                orientation="vertical"
+                style={{ height: "200px" }}
+              />
+              temperatuur
+            </Paper>
+          </Grid>
+
+          <Grid item xs={12} md={8} lg={9}>
+            <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+              stroomgebruik kamer
             </Paper>
           </Grid>
         </Grid>

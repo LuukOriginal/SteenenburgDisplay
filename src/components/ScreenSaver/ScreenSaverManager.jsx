@@ -17,7 +17,7 @@ if (localStorage.getItem("screenSaverEnabled") === null) {
 }
 
 if (localStorage.getItem("screenSaverIdleTime") === null) {
-  localStorage.setItem("screenSaverIdleTime", 1);
+  localStorage.setItem("screenSaverIdleTime", 5 * 60);
 }
 
 export default function ScreenSaverManager({ children }) {
@@ -52,8 +52,8 @@ export default function ScreenSaverManager({ children }) {
 
     const idleInterval = setInterval(() => {
       idleCounter += 1;
-      if (idleCounter >= screenSaverIdleTime * 60 && screenSaverEnabled) {
-        console.log(idleCounter + "/" + screenSaverIdleTime);
+      console.log(idleCounter + "/" + screenSaverIdleTime);
+      if (idleCounter >= screenSaverIdleTime && screenSaverEnabled) {
         setScreenSaverOpen(true);
       } else {
         setScreenSaverOpen(false);
@@ -72,10 +72,11 @@ export default function ScreenSaverManager({ children }) {
       return screenSaverEnabled;
     },
 
-    setIdleTime: (minutes) => {
-      setScreenSaverIdleTime(minutes);
+    setIdleTime: (seconds) => {
+      console.log(seconds, typeof seconds);
+      setScreenSaverIdleTime(seconds);
 
-      localStorage.setItem("screenSaverIdleTime", minutes);
+      localStorage.setItem("screenSaverIdleTime", seconds);
     },
     getIdleTime: () => {
       return screenSaverIdleTime;

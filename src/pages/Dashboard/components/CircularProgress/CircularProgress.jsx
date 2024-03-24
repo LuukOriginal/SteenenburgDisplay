@@ -46,6 +46,8 @@ export default function CircularProgress({
   transitionTimingFunction = "ease",
   background = "#dde2e9",
   hideBall = false,
+  customWidth = null,
+  customHeight = null,
   hideValue = false,
   gradient = [
     { stop: 0.0, color: "#00bc9b" },
@@ -57,9 +59,11 @@ export default function CircularProgress({
   suffix = "%",
 }) {
   progress = Math.round(progress * 100) / 100;
-  const width = 200;
+  const width = customWidth || 200;
   const center = width / 2;
-  const height = 200 || center + center * Math.cos(reduction * Math.PI);
+  const height =
+    customHeight || center + center * Math.cos(reduction * Math.PI);
+
   const [unique] = React.useState(() => Math.random().toString());
   const rotate = 90 + 180 * reduction;
   const r = center - strokeWidth / 2 - ballStrokeWidth / 2;

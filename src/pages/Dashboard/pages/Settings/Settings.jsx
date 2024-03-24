@@ -8,10 +8,11 @@ import Paper from "@mui/material/Paper";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
 
 import { ColorModeContext } from "../../../../components/ThemeManager/ThemeManager";
 import { ScreenSaverContext } from "../../../../components/ScreenSaver/ScreenSaverManager";
+import { InputLabel, MenuItem, Select } from "@mui/material";
 
 export default function Settings() {
   const colorMode = React.useContext(ColorModeContext);
@@ -69,46 +70,30 @@ export default function Settings() {
                     }}
                   />
                 }
-                label="Label"
+                label="Aan/Uit"
               />
-              <FormControlLabel
-                control={
-                  <TextField
-                    type="number"
-                    variant="standard"
-                    value={screenSaverInterval}
-                    onBlur={(e) => {
-                      const value = parseInt(
-                        screenSaverInterval.replaceAll(" ", "")
-                      );
-                      if (isNaN(value) || screenSaverInterval < 1)
-                        setScreenSaverInterval(1);
-
-                      console.log("Setting screensaver to " + value);
-
-                      screenSaveManager.setIdleTime(value);
-                    }}
-                    onChange={(e) => {
-                      // let value = parseInt(e.target.value);
-                      // if (isNaN(value) && e.target.value.trim() !== "") return;
-                      const pattern = /^(|\d+)$/;
-                      const valid = e.target.value
-                        .replaceAll(" ", "") //todo prevent e, E, -, + etc
-                        .match(pattern);
-                      if (!valid) {
-                        e.preventDefault();
-                        return;
-                      }
-
-                      console.log(e.target.value);
-
-                      setScreenSaverInterval(e.target.value);
-                    }}
-                    disabled={!isScreenSaverEnabled} //TODO, add  checking on input, and set the actual value in the manager
-                  />
-                }
-                label="Idle time (Minutes)"
-              />
+              <FormControl sx={1} size="small" style={{ marginTop: "10px" }}>
+                <InputLabel id="screen-time-out-label">
+                  Time-out scherm
+                </InputLabel>
+                <Select
+                  labelId="screen-time-out-label"
+                  label="Time-out scherm"
+                  disabled={!isScreenSaverEnabled}
+                  value={screenSaverInterval}
+                  onChange={(e) => {
+                    setScreenSaverInterval(e.target.value);
+                    screenSaveManager.setIdleTime(e.target.value);
+                  }}
+                >
+                  <MenuItem value={30}>30 seconden</MenuItem>
+                  <MenuItem value={1 * 60}>1 minuut</MenuItem>
+                  <MenuItem value={5 * 60}>5 minuten</MenuItem>
+                  <MenuItem value={10 * 60}>10 minuten</MenuItem>
+                  <MenuItem value={30 * 60}>30 minuten</MenuItem>
+                  <MenuItem value={60 * 60}>1 uur</MenuItem>
+                </Select>
+              </FormControl>
             </FormGroup>
           </Container>
         </Paper>

@@ -6,9 +6,9 @@ import { ColorModeContext } from "..//ThemeManager/ThemeManager";
 import Logo from "../../assets/images/logo.svg";
 import LogoLight from "../../assets/images/logo-light.svg";
 
-export default function LogoTopBar() {
+export default function LogoTopBar(props) {
   const colorMode = React.useContext(ColorModeContext);
-  const theme = colorMode.get();
+  const theme = props.theme || colorMode.get();
   return (
     <div id="topbar-logo-container">
       <img

@@ -5,58 +5,95 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Slider from "@mui/material/Slider";
-import CircularProgress from "../../components/CircularProgress/CircularProgress";
 import Box from "@mui/material/Box";
 import DevicesOtherIcon from "@mui/icons-material/DevicesOther";
 import Typography from "@mui/material/Typography";
-import { Button, Stack } from "@mui/material";
+import Stack from "@mui/material/Stack";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import TvIcon from "@mui/icons-material/Tv";
 import DeviceButton from "./components/DeviceButton/DeviceButton";
 import ThermostatIcon from "@mui/icons-material/Thermostat";
+import InfoIcon from "@mui/icons-material/Info";
 export default function Room() {
-  const [temperature, setTemperature] = React.useState(50);
-  const [airHumidity, setAirHumidity] = React.useState(40);
-
   let { roomId } = useParams();
 
-  const apparaten = [
-    {
-      title: "Lampen",
-      devices: [
-        {
-          name: "Slaapkamer lampen",
-          icon: <LightbulbIcon />,
-          enabled: true,
-        },
-        {
-          name: "Badkamer lampen",
-          icon: <LightbulbIcon />,
-          enabled: false,
-        },
-        {
-          name: "Nachtlampen",
-          icon: <LightbulbIcon />,
-          enabled: true,
-        },
-        {
-          name: "Sfeerlampen",
-          icon: <LightbulbIcon />,
-          enabled: false,
-        },
-      ],
-    },
-    {
-      title: "Tv's",
-      devices: [
-        {
-          name: "Tv 1",
-          icon: <TvIcon />,
-        },
-      ],
-    },
-  ];
+  const roomData = {
+    id: roomId,
+    name: "Kamer " + roomId,
+    floor: 3,
 
+    size: 18,
+    bedCount: 2,
+    roomCount: 1,
+
+    temperature: 18,
+    airHumidity: 35,
+    devices: [
+      {
+        title: "Lampen",
+        devices: [
+          {
+            name: "Slaapkamer lampen",
+            icon: <LightbulbIcon />,
+            enabled: true,
+          },
+          {
+            name: "Badkamer lampen",
+            icon: <LightbulbIcon />,
+            enabled: false,
+          },
+          {
+            name: "Nachtlampen",
+            icon: <LightbulbIcon />,
+            enabled: true,
+          },
+          {
+            name: "Sfeerlampen",
+            icon: <LightbulbIcon />,
+            enabled: false,
+          },
+        ],
+      },
+      {
+        title: "Tv's",
+        devices: [
+          {
+            name: "Tv 1",
+            icon: <TvIcon />,
+          },
+        ],
+      },
+    ],
+  };
+
+  const guestData = {
+    name: "Jeroen Janssen",
+    phone: "06-12345678",
+    email: "jeroenjanssen@example.com",
+
+    peopleCount: 2,
+
+    arrivalDate: "2022-05-01",
+    departureDate: "2022-05-02",
+    arrivalTime: "08:00",
+    departureTime: "12:00",
+  };
+
+  function infoValue(name, value) {
+    return (
+      <Box display={"flex"} justifyContent={"space-between"}>
+        <Typography variant="body1" ml={1}>
+          {name}:
+        </Typography>
+        <Typography variant="body1" ml={1}>
+          {value}
+        </Typography>
+      </Box>
+    );
+  }
+
+  const [temperature, setTemperature] = React.useState(roomData.temperature);
+  const [airHumidity, setAirHumidity] = React.useState(roomData.airHumidity);
   return (
     <div id="Room">
       <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
@@ -75,10 +112,43 @@ export default function Room() {
               }}
             >
               <Box display={"flex"} alignItems={"center"}>
+                <InfoIcon />
                 <Typography variant="h6" ml={1}>
-                  Meldingen
+                  Informatie
                 </Typography>
               </Box>
+
+              <Stack spacing={1} p={1}>
+                <Paper elevation={4} sx={{ p: 1 }}>
+                  <Typography variant="subtitle2" ml={1}>
+                    kamer
+                  </Typography>
+                  {infoValue("Naam", roomData.name)}
+                  {infoValue("Verdieping", roomData.floor)}
+
+                  {infoValue("Aantal kamers", roomData.roomCount)}
+                  {infoValue("Aantal bedden", roomData.bedCount)}
+                  {infoValue("Oppervlakte", roomData.size + "m²")}
+                </Paper>
+                <Paper elevation={4} sx={{ p: 1 }}>
+                  <Typography variant="subtitle2" ml={1}>
+                    Gasten
+                  </Typography>
+                  {infoValue("Naam", guestData.name)}
+                  {infoValue("Telfoon", guestData.phone)}
+
+                  {infoValue("Aantal personen", guestData.peopleCount)}
+
+                  {infoValue(
+                    "Aankomst",
+                    `${guestData.arrivalDate} ${guestData.arrivalTime}`
+                  )}
+                  {infoValue(
+                    "Vertrek",
+                    `${guestData.departureDate} ${guestData.departureTime}`
+                  )}
+                </Paper>
+              </Stack>
             </Paper>
           </Grid>
 
@@ -102,7 +172,7 @@ export default function Room() {
                 </Typography>
               </Box>
               <Stack spacing={1} p={1}>
-                {apparaten.map((category, i) => (
+                {roomData.devices.map((category, i) => (
                   <Paper elevation={4} sx={{ p: 1 }}>
                     <Typography variant="subtitle1">
                       {category.title}

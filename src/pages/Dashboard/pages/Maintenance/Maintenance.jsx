@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import WarningImage from "./assets/images/warning.png";
 import InfoImage from "./assets/images/info.png";
@@ -23,6 +23,7 @@ import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import SpeedIcon from "@mui/icons-material/Speed";
 import Performance from "./components/Performance/Performance";
+import { Popupcontext } from "../../../../components/PopupMessage/PopupManager";
 const messages = [
   {
     id: 1,
@@ -41,6 +42,7 @@ const messages = [
 ];
 
 export default function Maintenance() {
+  const Popup = useContext(Popupcontext);
   return (
     <div id="Maintenance">
       <Container maxWidth="xl" sx={{ mt: 4, mb: 4 }}>
@@ -64,6 +66,37 @@ export default function Maintenance() {
                     Log
                   </Typography>
                 </Box>
+                <Paper
+                  elevation={4}
+                  sx={{ p: 2, height: "100%", overflowY: "scroll" }}
+                >
+                  08:15:03 Living Room Motion Sensor: Motion detected in Couch
+                  Area. <br />
+                  08:20:17 Kitchen Light Switch: Light turned on. <br />
+                  08:22:34 Kitchen Dimmer Switch: Brightness adjusted to 50%.{" "}
+                  <br />
+                  08:31:12 Main Thermostat: Temperature reached target of 22°C.{" "}
+                  <br />
+                  09:00:02 Bedroom Door Lock: Unlocked by John Doe (Pin code).{" "}
+                  <br />
+                  10:15:43 Smoke Detector (Kitchen): Low battery detected.{" "}
+                  <br />
+                  12:30:17 Front Door Lock: Attempted entry with invalid code.{" "}
+                  <br />
+                  12:30:18 Front Door Lock: Sent security alert to phone. <br />
+                  15:42:07 Living Room Motion Sensor: No motion detected for
+                  past 2 hours. Switching off hallway light (automated rule).{" "}
+                  <br />
+                  17:15:04 Kitchen Door Sensor: Door opened. <br />
+                  17:16:23 Kitchen Light Switch: Light turned on automatically.{" "}
+                  <br />
+                  19:30:12 Bedroom Light Switch: Light turned off by voice
+                  command. <br />
+                  20:00:15 Living Room Motion Sensor: Motion detected. Turning
+                  on living room lights (automated rule). <br />
+                  22:15:03 Bedroom Door Lock: Locked by Jane Doe (Fingerprint).
+                  <br />
+                </Paper>
               </Paper>
               <Paper
                 sx={{
@@ -163,7 +196,37 @@ export default function Maintenance() {
                 >
                   Afsluiten
                 </Button>
-                <Button variant="outlined" startIcon={<SpeedIcon />}>
+                <Button
+                  variant="outlined"
+                  startIcon={<SpeedIcon />}
+                  onClick={() => {
+                    const options = [
+                      {
+                        text: "volgende",
+                        onClick: () => {
+                          Popup.show(
+                            "Test Melding",
+                            "dit is nog een test melding",
+                            [
+                              {
+                                text: "OK",
+                              },
+                            ]
+                          );
+                        },
+                      },
+                      {
+                        text: "OK",
+                      },
+                    ];
+
+                    Popup.show(
+                      "Test Melding",
+                      "Dit is een testmelding",
+                      options
+                    );
+                  }}
+                >
                   Test Meldingen
                 </Button>
               </Stack>

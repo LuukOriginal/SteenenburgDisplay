@@ -55,6 +55,7 @@ export default function Maintenance() {
                   flexGrow: 1,
                   // height: 337.5,
                   height: "calc(47.5vh - 75px - 12px)",
+                  overflow: "hidden",
                 }}
               >
                 <Box display={"flex"} alignItems={"center"}>
@@ -70,8 +71,10 @@ export default function Maintenance() {
                   display: "flex",
                   flexDirection: "column",
                   // height: 337.5,
-                  overflow: "hidden",
+                  flexGrow: 1,
                   height: "calc(47.5vh - 75px - 12px)",
+                  overflow: "hidden",
+                  //height: "calc(47.5vh - 75px - 12px)",
                 }}
               >
                 <Box display={"flex"} alignItems={"center"}>
@@ -82,7 +85,7 @@ export default function Maintenance() {
                 </Box>
                 <Box
                   display={"flex"}
-                  mt={3}
+                  mt={2}
                   textAlign={"center"}
                   height={"calc(100% - 23px)"}
                 >

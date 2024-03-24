@@ -13,6 +13,7 @@ if (localStorage.getItem("theme") === null) {
 }
 
 function GetAutoTheme() {
+  console.log("getting auto  theme");
   const currentTime = new Date().getHours();
   if (currentTime >= 6 && currentTime < 18) {
     return "light";
@@ -28,13 +29,14 @@ export default function ThemeManager({ children }) {
       : localStorage.getItem("theme") || "dark"
   );
 
+  const [autoInterval, setAutoInterval] = React.useState();
+
   function StartAutoInterval() {
     return setInterval(() => {
+      console.log("changing theme");
       setMode(GetAutoTheme());
     }, 1000);
   }
-
-  const [autoInterval, setAutoInterval] = React.useState();
 
   useEffect(() => {
     if (localStorage.getItem("theme") === "auto") {
@@ -44,6 +46,7 @@ export default function ThemeManager({ children }) {
 
   const colorMode = {
     set: (mode) => {
+      console.log(mode);
       switch (mode) {
         case "dark" || "light":
           clearInterval(autoInterval);

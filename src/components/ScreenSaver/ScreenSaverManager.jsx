@@ -52,7 +52,7 @@ export default function ScreenSaverManager({ children }) {
 
     const idleInterval = setInterval(() => {
       idleCounter += 1;
-      console.log(idleCounter + "/" + screenSaverIdleTime);
+      // console.log(idleCounter + "/" + screenSaverIdleTime);
       if (idleCounter >= screenSaverIdleTime && screenSaverEnabled) {
         setScreenSaverOpen(true);
       } else {

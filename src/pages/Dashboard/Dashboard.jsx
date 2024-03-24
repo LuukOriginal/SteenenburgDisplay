@@ -9,14 +9,15 @@ import ProgressTestRemove from "./pages/progressTestREMOVE/REMOVE";
 import NotFound from "../NotFound/NotFound";
 import Cameras from "./pages/Cameras/Cameras";
 import LogoTopBar from "../../components/LogoTopBar/LogoTopBar";
+import Map from "./pages/Map/Map";
 
 export default function Dashboard() {
   return (
     <div id="Dashboard">
       <LogoTopBar />
       <Routes>
-        <Route path="/" element={<Link to="room">Room test</Link>} />
-        <Route path="room" element={<Room />} />
+        <Route path="/" element={<Map />} />
+        <Route path="room/:roomId" element={<Room />} />
         <Route path="maintenance" element={<Maintenance />} />
         <Route path="settings" element={<Settings />} />
         <Route path="testprogress" element={<ProgressTestRemove />} />

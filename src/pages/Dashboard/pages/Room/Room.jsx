@@ -173,13 +173,13 @@ export default function Room() {
               </Box>
               <Stack spacing={1} p={1}>
                 {roomData.devices.map((category, i) => (
-                  <Paper elevation={4} sx={{ p: 1 }}>
+                  <Paper key={i} elevation={4} sx={{ p: 1 }}>
                     <Typography variant="subtitle1">
                       {category.title}
                     </Typography>
                     <Grid container spacing={1}>
                       {category.devices.map((device, i) => (
-                        <Grid item xs={12} md={4} lg={4}>
+                        <Grid key={i} item xs={12} md={4} lg={4}>
                           <DeviceButton device={device} />
                         </Grid>
                       ))}

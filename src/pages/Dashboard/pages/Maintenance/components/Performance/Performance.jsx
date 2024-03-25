@@ -8,10 +8,20 @@ import NetworkCheckIcon from "@mui/icons-material/NetworkCheck";
 import Crop169Icon from "@mui/icons-material/Crop169";
 
 export default function Performance() {
-  const [cpuPercentage, setCpuPercentage] = React.useState(0);
-  const [memoryPercentage, setMemoryPercentage] = React.useState(0);
-  const [diskPercentage, setDiskPercentage] = React.useState(0);
+  const [cpuPercentage, setCpuPercentage] = React.useState(14);
+  const [memoryPercentage, setMemoryPercentage] = React.useState(40);
+  const [diskPercentage, setDiskPercentage] = React.useState(0.2);
   const [networkPercentage, setNetworkPercentage] = React.useState(0);
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setCpuPercentage(Math.floor(Math.random() * 100));
+      setMemoryPercentage(Math.floor(Math.random() * 100));
+      setDiskPercentage(Math.floor(Math.random() * 100));
+      setNetworkPercentage(Math.floor(Math.random() * 100));
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const Statistics = [
     {
@@ -38,8 +48,8 @@ export default function Performance() {
 
   return (
     <Grid container spacing={2}>
-      {Statistics.map((statistic) => (
-        <Grid item xs={12} md={6} lg={6}>
+      {Statistics.map((statistic, index) => (
+        <Grid key={index} item xs={12} md={6} lg={6}>
           <Paper
             elevation={4}
             style={{

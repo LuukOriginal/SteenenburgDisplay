@@ -44,7 +44,7 @@ export default function Settings() {
         <Paper>
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4, py: 3 }}>
             <Typography variant="h4">Settings</Typography>
-            <FormGroup>
+            <FormGroup sx={{ overflow: "visible" }}>
               <Typography variant="h6">Theme</Typography>
               <ToggleButtonGroup
                 color="primary"

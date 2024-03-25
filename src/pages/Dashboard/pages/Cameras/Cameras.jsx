@@ -86,7 +86,8 @@ export default function Cameras() {
       {cameraPopup && openCameraPopup(cameraPopup)}
       <Grid container spacing={3}>
         {cameras.map((camera, index) => {
-          if (index < (cameraPage - 1) * 6 || index >= cameraPage * 6) return;
+          if (index < (cameraPage - 1) * 6 || index >= cameraPage * 6)
+            return null;
           return (
             <Grid item xs={12} md={4} lg={4} key={index}>
               <Paper

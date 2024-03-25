@@ -72,7 +72,11 @@ export default function Settings() {
                 }
                 label="Aan/Uit"
               />
-              <FormControl sx={1} size="small" style={{ marginTop: "10px" }}>
+              <FormControl
+                sx={1}
+                size="small"
+                style={{ marginTop: "10px", overflow: "visible" }}
+              >
                 <InputLabel id="screen-time-out-label">
                   Time-out scherm
                 </InputLabel>
